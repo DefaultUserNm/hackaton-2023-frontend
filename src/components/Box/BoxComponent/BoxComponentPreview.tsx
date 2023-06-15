@@ -41,7 +41,7 @@ export const BoxComponentPreview: FC<ProductComponentProps> = ({
   };
 
   return (
-    <Container>
+    <Container maxWidth="xl">
       <Card>
         <CardContent>
           <Typography variant="h2" color="text.secondary">

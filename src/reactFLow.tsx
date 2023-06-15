@@ -1,65 +1,49 @@
 import React from "react";
 import { MarkerType, Position } from "reactflow";
 
+console.log({ window }, window.document.body.offsetWidth);
+
+const mid = window.document.body.offsetWidth / 2;
 export const nodes = [
   {
     id: "1",
     type: "input",
     data: {
-      label: "one",
+      label: "УОВ",
     },
-    position: { x: 800, y: 0 },
+    position: { x: mid, y: 0 },
   },
   {
     id: "2",
     data: {
-      label: "two",
+      label: "IE",
     },
-    position: { x: 600, y: 100 },
+    position: { x: mid - 200, y: 100 },
   },
   {
     id: "3",
     type: "output",
     data: {
-      label: "three",
+      label: "НСИ",
     },
-    position: { x: 1000, y: 100 },
+    position: { x: mid + 100, y: 100 },
   },
   {
     id: "4",
     type: "output",
     data: {
-      label: "four",
+      label: "СБОЛ.ПрО",
     },
-    position: { x: 400, y: 200 },
+    position: { x: mid - 400, y: 200 },
   },
   {
     id: "5",
     type: "output",
     data: {
-      label: "five",
+      label: "Hubble",
     },
-    position: { x: 800, y: 200 },
+    position: { x: mid + 300, y: 100 },
   },
-  {
-    id: "6",
-    type: "output",
-    data: {
-      label: "six",
-    },
-    position: { x: 1200, y: 200 },
-  },
-  // {
-  //   id: '4',
-  //   type: 'custom',
-  //   position: { x: 100, y: 200 },
-  //   data: {
-  //     selects: {
-  //       'handle-0': 'smoothstep',
-  //       'handle-1': 'smoothstep',
-  //     },
-  //   },
-  // },
   // {
   //   id: "5",
   //   type: "output",
@@ -90,29 +74,24 @@ export const nodes = [
   //   sourcePosition: Position.Right,
   //   targetPosition: Position.Left,
   // },
-  // {
-  //   id: "7",
-  //   type: "default",
-  //   className: "annotation",
-  //   data: {
-  //     label: (
-  //       <>
-  //         On the bottom left you see the <strong>Controls</strong> and the
-  //         bottom right the <strong>MiniMap</strong>. This is also just a node 🥳
-  //       </>
-  //     ),
-  //   },
-  //   draggable: false,
-  //   selectable: false,
-  //   position: { x: 150, y: 400 },
-  // },
+  {
+    id: "7",
+    type: "default",
+    className: "annotation",
+    data: {
+      label: <>Связи продукта с внешними контрагентами 🥳</>,
+    },
+    draggable: false,
+    selectable: false,
+    position: { x: 550, y: 0 },
+  },
 ];
 export const edges = [
   { id: "e1-2", source: "1", target: "2", animated: true }, // label: "this is an edge label"
   { id: "e1-3", source: "1", target: "3", animated: true },
   { id: "e2-4", source: "2", target: "4", animated: true },
-  { id: "e2-5", source: "2", target: "5", animated: true },
-  { id: "e3-6", source: "", target: "3", animated: true }
+  { id: "e2-5", source: "1", target: "5", animated: true },
+  // { id: "e3-6", source: "", target: "3", animated: true },
   // {
   //   id: "e4-5",
   //   source: "4",

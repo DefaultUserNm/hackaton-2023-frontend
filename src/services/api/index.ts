@@ -25,7 +25,7 @@ interface ProductDTO {
   name: string;
   products: [];
   components: ProductComponent[];
-  team: Team;
+  teams: Team[];
 }
 export const { reducer, reducerPath, middleware, useGetProductDTOQuery } =
   createApi({

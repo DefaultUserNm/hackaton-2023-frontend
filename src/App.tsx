@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Grid } from "@mui/material";
+import { Grid, Typography, Container } from "@mui/material";
 import { BoxTeamPreview } from "./components/Box/BoxTeam/BoxTeamPreview";
 
 import ReactFlow from "reactflow";
@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
     axios
       .get("https://185.141.227.125:443/api/api/v1/products")
-      .then((r) => console.log('response', r));
+      .then((r) => console.log("response", r.data));
   }, []);
 
   if (isError) {
@@ -28,13 +28,20 @@ function App() {
 
   return (
     <div className="App">
+      <nav>
+        <Container maxWidth="xl">
+          <Typography variant="h2" color="text.primary" textAlign="left">
+            УОВ
+          </Typography>
+        </Container>
+      </nav>
       <header className="App-header">
         <Grid container spacing={3} direction="column">
           <Grid item>
-            {data?.[0].team?.users && (
+            {data?.[0]?.teams.length && (
               <BoxTeamPreview
-                name={data[0]?.team?.name ?? ""}
-                users={data[0]?.team.users}
+                name={data[0]?.teams[0]?.name ?? ""}
+                users={data[0]?.teams[0]?.users}
               />
             )}
           </Grid>
@@ -44,14 +51,12 @@ function App() {
             )}
           </Grid>
           <Grid item>
-            <div style={{ width: "100vw", height: "30vh" }}>
+            <div style={{ width: "100vw", height: "50vh" }}>
               <ReactFlow nodes={nodes} edges={edges} />
             </div>
           </Grid>
         </Grid>
       </header>
-      <main>
-      </main>
     </div>
   );
 }
