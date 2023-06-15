@@ -6,27 +6,29 @@ import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import * as React from "react";
 import { FC } from "react";
-import { ProductComponent } from "../BoxPreview";
 import {
   Avatar,
   Container,
   Grid,
   Dialog,
   DialogContent,
-  DialogTitle,
   DialogActions,
+  Link,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  ListItemButton,
 } from "@mui/material";
-import { deepOrange } from "@mui/material/colors";
 import { BootstrapDialogTitle } from "../../BootstrapDialogTitle";
+import { ProductComponent } from "../../../services/api";
+import { blue } from "@mui/material/colors";
 
-interface BoxComponentPreviewProps {
-  productComponents?: ProductComponent[];
-  total?: number;
-  title: string;
+interface ProductComponentProps {
+  productComponents: ProductComponent[];
 }
-export const BoxComponentPreview: FC<BoxComponentPreviewProps> = ({
-  title,
-  total,
+
+export const BoxComponentPreview: FC<ProductComponentProps> = ({
   productComponents,
 }) => {
   const [open, setOpen] = React.useState(false);
@@ -43,54 +45,46 @@ export const BoxComponentPreview: FC<BoxComponentPreviewProps> = ({
       <Card>
         <CardContent>
           <Typography variant="h2" color="text.secondary">
-            {title}
+            Компоненты
           </Typography>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} justifyContent={"center"}>
             {productComponents?.length &&
-              productComponents.map((productComponent) => (
-                <Grid item key={productComponent.name}>
+              productComponents.map(({ name, ci, repoLink, stack }) => (
+                <Grid item key={ci}>
                   <Button
                     variant="outlined"
                     size="large"
                     onClick={handleClickOpen}
                   >
-                    {productComponent.name}
+                    {name}
                   </Button>
                   <Dialog
                     onClose={handleClose}
                     aria-labelledby="customized-dialog-title"
                     open={open}
+                    fullWidth
                   >
                     <BootstrapDialogTitle
                       id="customized-dialog-title"
                       onClose={handleClose}
                     >
-                      Modal title
+                      Компонент {name}
                     </BootstrapDialogTitle>
                     <DialogContent dividers>
-                      <Typography gutterBottom>
-                        Cras mattis consectetur purus sit amet fermentum. Cras
-                        justo odio, dapibus ac facilisis in, egestas eget quam.
-                        Morbi leo risus, porta ac consectetur ac, vestibulum at
-                        eros.
-                      </Typography>
-                      <Typography gutterBottom>
-                        Praesent commodo cursus magna, vel scelerisque nisl
-                        consectetur et. Vivamus sagittis lacus vel augue laoreet
-                        rutrum faucibus dolor auctor.
-                      </Typography>
-                      <Typography gutterBottom>
-                        Aenean lacinia bibendum nulla sed consectetur. Praesent
-                        commodo cursus magna, vel scelerisque nisl consectetur
-                        et. Donec sed odio dui. Donec ullamcorper nulla non
-                        metus auctor fringilla.
-                      </Typography>
+                      <List sx={{ pt: 0 }}>
+                        <ListItem disableGutters>
+                          <ListItemText primary={`КЭ: ${ci}`} />
+                        </ListItem>
+
+                        <ListItem disableGutters>
+                          <Link href={repoLink}>Ссылка на репозиторий</Link>
+                        </ListItem>
+
+                        <ListItem disableGutters>
+                          <ListItemText primary={`Тех.Стек: ${JSON.stringify(stack)}`} />
+                        </ListItem>
+                      </List>
                     </DialogContent>
-                    <DialogActions>
-                      <Button autoFocus onClick={handleClose}>
-                        Save changes
-                      </Button>
-                    </DialogActions>
                   </Dialog>
                 </Grid>
               ))}

@@ -8,7 +8,7 @@
       "repoLink": "www.leningrad-spb.ru",
       "stack": ["JS", "PHP", "Erlang"]
     }],
-    "teams": [{
+    "team": {
       "name": "AURORA",
       "users": [{
         "login": "testuser-pe",
@@ -18,6 +18,6 @@
         "phone": "+7-926-12345",
         "email": "test@gmail.com"
       }]
-    }]
+    }
   }
 }

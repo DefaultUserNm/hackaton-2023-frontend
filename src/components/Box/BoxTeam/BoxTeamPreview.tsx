@@ -11,26 +11,23 @@ import {
 } from "@mui/material";
 import { deepOrange, deepPurple } from "@mui/material/colors";
 
-import { TeamMember } from "../BoxPreview";
+import {Team, User} from "../../../services/api";
 
-interface BoxTeamProps {
-  leader?: string;
-  members?: TeamMember[];
-  title: string;
-  total?: number;
-}
-export const BoxTeamPreview: FC<BoxTeamProps> = ({
-  leader,
-  members,
-  title,
-  total,
+export const BoxTeamPreview: FC<Team> = ({
+  // leader,
+  // members,
+  // title,
+  // total,
+   name,
+   users
 }) => {
+
   return (
     <Container>
       <Card>
         <CardContent>
           <Typography variant="h2" color="text.secondary">
-            {title}
+            Команда
           </Typography>
           <Typography
             variant="h4"
@@ -38,7 +35,7 @@ export const BoxTeamPreview: FC<BoxTeamProps> = ({
             component="div"
             gutterBottom
           >
-            Лидер: {leader}
+            Название: {name}
           </Typography>
           <Typography
             variant="h4"
@@ -46,7 +43,7 @@ export const BoxTeamPreview: FC<BoxTeamProps> = ({
             textAlign="left"
             gutterBottom
           >
-            Количество человек: {total}
+            Количество сотрудников: {users.length}
           </Typography>
           <Grid container spacing={2}>
             <Grid item>
@@ -54,9 +51,9 @@ export const BoxTeamPreview: FC<BoxTeamProps> = ({
                 Состав:
               </Typography>
             </Grid>
-            {members?.length &&
-              members.map(({ lastName, firstName, id }) => (
-                <Grid item key={id} style={{ display: "flex" }}>
+            {users?.length &&
+                users.map(({ login, lastName, firstName }) => (
+                <Grid item key={login} style={{ display: "flex" }}>
                   <Avatar
                     sx={{ bgcolor: deepOrange[500], width: 64, height: 64 }}
                   >
@@ -67,9 +64,9 @@ export const BoxTeamPreview: FC<BoxTeamProps> = ({
               ))}
           </Grid>
         </CardContent>
-        <CardActions>
-          <Button size="small">Подробнее</Button>
-        </CardActions>
+        {/*<CardActions>*/}
+        {/*  <Button size="small">Подробнее</Button>*/}
+        {/*</CardActions>*/}
       </Card>
     </Container>
   );
