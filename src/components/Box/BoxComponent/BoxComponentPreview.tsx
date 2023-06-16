@@ -5,7 +5,7 @@ import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import * as React from "react";
-import { FC } from "react";
+import { FC, useMemo, useState } from "react";
 import {
   Avatar,
   Container,
@@ -32,13 +32,20 @@ export const BoxComponentPreview: FC<ProductComponentProps> = ({
   productComponents,
 }) => {
   const [open, setOpen] = React.useState(false);
+  const [activeComponent, setActiveComponent] = useState("");
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (id: string) => () => {
     setOpen(true);
+    setActiveComponent(id);
   };
+
   const handleClose = () => {
     setOpen(false);
   };
+
+  const selectedUser = useMemo(
+    () => productComponents.find(({ name }) => name === activeComponent),
+    [productComponents, activeComponent]);
 
   return (
     <Container maxWidth="xl">
@@ -54,7 +61,7 @@ export const BoxComponentPreview: FC<ProductComponentProps> = ({
                   <Button
                     variant="outlined"
                     size="large"
-                    onClick={handleClickOpen}
+                    onClick={handleClickOpen(name)}
                   >
                     {name}
                   </Button>
@@ -68,20 +75,22 @@ export const BoxComponentPreview: FC<ProductComponentProps> = ({
                       id="customized-dialog-title"
                       onClose={handleClose}
                     >
-                      Компонент {name}
+                      Компонент {selectedUser?.name}
                     </BootstrapDialogTitle>
                     <DialogContent dividers>
                       <List sx={{ pt: 0 }}>
                         <ListItem disableGutters>
-                          <ListItemText primary={`КЭ: ${ci}`} />
+                          <ListItemText primary={`КЭ: ${selectedUser?.ci}`} />
                         </ListItem>
 
                         <ListItem disableGutters>
-                          <Link href={repoLink}>Ссылка на репозиторий</Link>
+                          <Link href={selectedUser?.repoLink}>Ссылка на репозиторий</Link>
                         </ListItem>
 
                         <ListItem disableGutters>
-                          <ListItemText primary={`Тех.Стек: ${JSON.stringify(stack)}`} />
+                          <ListItemText
+                            primary={`Тех.Стек: ${JSON.stringify(selectedUser?.stack)}`}
+                          />
                         </ListItem>
                       </List>
                     </DialogContent>

@@ -45,21 +45,6 @@ export const nodes = [
     position: { x: mid + 300, y: 100 },
   },
   // {
-  //   id: "5",
-  //   type: "output",
-  //   data: {
-  //     label: "custom style",
-  //   },
-  //   className: "circle",
-  //   style: {
-  //     background: "#2B6CB0",
-  //     color: "white",
-  //   },
-  //   position: { x: 400, y: 200 },
-  //   sourcePosition: Position.Right,
-  //   targetPosition: Position.Left,
-  // },
-  // {
   //   id: "6",
   //   type: "output",
   //   style: {

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Grid, Typography, Container } from "@mui/material";
+import { Grid, Typography, Container, Card } from "@mui/material";
 import { BoxTeamPreview } from "./components/Box/BoxTeam/BoxTeamPreview";
 
 import ReactFlow from "reactflow";
@@ -50,10 +50,10 @@ function App() {
               <BoxComponentPreview productComponents={data[0].components} />
             )}
           </Grid>
-          <Grid item>
-            <div style={{ width: "100vw", height: "50vh" }}>
+          <Grid item style={{ width: "100vw", height: "50vh" }}>
+            {/*<Card>*/}
               <ReactFlow nodes={nodes} edges={edges} />
-            </div>
+            {/*</Card>*/}
           </Grid>
         </Grid>
       </header>
