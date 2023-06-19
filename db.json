@@ -1,0 +1,23 @@
+{
+  "data": {
+    "name": "Aurora",
+    "products": [],
+    "components": [{
+      "name": "OOD",
+      "ci": "123123",
+      "repoLink": "www.leningrad-spb.ru",
+      "stack": ["JS", "PHP", "Erlang"]
+    }],
+    "team": {
+      "name": "AURORA",
+      "users": [{
+        "login": "testuser-pe",
+        "lastName": "Testov",
+        "firstName": "Test",
+        "middleName": "Testovich",
+        "phone": "+7-926-12345",
+        "email": "test@gmail.com"
+      }]
+    }
+  }
+}
